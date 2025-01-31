@@ -1,0 +1,33 @@
+//Zadanie 3. Stwórz program, który analizuje wprowadzony przez użytkownika tekst. Program powinien:
+//• Liczyć liczbę słów.
+//• Liczyć liczbę znaków (bez spacji).
+//• Znajdować najczęściej występujące słowo.
+//Wymagane funkcje:
+//• Nadawanie wartości: Przechowywanie danych tekstowych.
+//• Łańcuchy znaków: Operacje na stringach, takie jak dzielenie na słowa.
+//• Instrukcje warunkowe: Obsługa różnych scenariuszy analizy.
+//• Niezmienne struktury danych: Użycie list i map do przechowywania i analizowania słów
+
+open System
+
+let main () =
+
+    let analizujTekst (tekst: string) =
+        let slowa = tekst.Split([|' '; '\t'; '\n'; '\r'|], StringSplitOptions.RemoveEmptyEntries)
+        let liczbaSlow = slowa.Length
+        let liczbaZnakow = tekst.Replace(" ", "").Length
+        let najczestszeSlowo = 
+            slowa 
+            |> Array.countBy id 
+            |> Array.sortByDescending snd 
+            |> Array.tryHead 
+            |> Option.map fst
+    
+        printfn "\nLiczba słów: %d" liczbaSlow
+        printfn "Liczba znaków (bez spacji): %d" liczbaZnakow
+        printfn "Najczęściej występujące słowo: %s" (defaultArg najczestszeSlowo "Brak")
+
+    printf "Wprowadź tekst: "
+    Console.ReadLine() |> analizujTekst
+
+main()

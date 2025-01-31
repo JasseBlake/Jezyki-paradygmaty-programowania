@@ -1,0 +1,44 @@
+//Zadanie 1. Stwórz aplikację konsolową, która oblicza wskaźnik masy ciała (BMI) użytkownika na
+//podstawie wprowadzonych przez niego wagi (kg) i wzrostu (cm). Program powinien komunikować się z
+//użytkownikiem, odczytywać dane wejściowe, przeliczać BMI i wyświetlać wynik wraz z kategorią BMI.
+
+//Wymagane funkcje:
+//• Komunikacja z użytkownikiem: Odczyt danych za pomocą Console.ReadLine() i wyświetlanie
+//wyników za pomocą printfn.
+//• Przekształcanie typów: Konwersja danych wejściowych z string na float.
+//• Instrukcje warunkowe: Określenie kategorii BMI na podstawie wartości obliczonej.
+//• Niezmienne struktury danych: Możesz użyć rekordów do przechowywania danych użytkownika.
+
+open System
+
+type User = {Waga: float; Wzrost:float}
+
+let obliczBMI (waga:float) (wzrost:float) =
+    let wzrostMetry: float = wzrost /100.0
+    waga / (wzrostMetry * wzrostMetry)
+
+let okreslkategorieBMI bmi: 'a=
+    if bmi < 18.5 then printfn "niedowaga" |> string
+    elif bmi >= 18.5 then printfn "wartość prawidłowa"|> string
+    elif bmi > 24.9 then printfn "nadwaga"|> string
+    elif bmi > 35.5 then printfn "otyłość I stopnia"|> string
+    elif bmi > 48.5 then printfn "otyłość II stopnia" |> string
+    else printfn "nieprawdiłowe dane"|> string
+
+
+let main() = 
+    printfn "podaj swoją wagę w kg"
+    let waga: float = Console.ReadLine() |> float
+
+    printfn "podaj swoj wzrost w cm"
+    let wzrost: float = Console.ReadLine() |> float
+
+    let user: User = {Waga =waga; Wzrost = wzrost}
+
+    let bmi: float = obliczBMI user.Waga user.Wzrost
+    let kategoria: string = okreslkategorieBMI bmi
+
+    printfn "Twoje BMI wynosi: %.2f" bmi
+    printfn "Kategoria BMI : %s" kategoria
+
+main()

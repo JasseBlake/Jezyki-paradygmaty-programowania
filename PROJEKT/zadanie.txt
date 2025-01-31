@@ -1,0 +1,15 @@
+6. Sortowanie plików w katalogach
+• Opis: Program, który skanuje dany katalog, a następnie sortuje pliki do odpowiednich
+podkatalogów na podstawie ich rozszerzeń.
+• Zakres: Operacje na systemie plików, praca z IO (Input/Output).
+• Techniki: Manipulacja plikami, sortowanie, rekurencja.
+
+Zadaj pytanie o sciezka folderu:  ---->
+  uzytkownik wprowadza sciezke <-----
+  Sprawdzenie poprawnosci sciezki ---> (akceptacja=dalej / odmowa=od nowa wprowadz)
+Zczytywanie nazw plików wraz z rozszerzeniami
+Słownik ( id, nazwa,rozszerzenie) -wszytykie pliki
+3.Dla kazdego elementu listy:
+    -sprawdza rozszerzenie i czy istnieje taki folder juz (jak nie to go tworzy)
+    -przenosi ten plik do tego folderu
+

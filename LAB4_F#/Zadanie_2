@@ -1,0 +1,51 @@
+(*Zadanie 2. Napisz program, który pozwala użytkownikowi na konwersję kwoty z jednej waluty na inną.
+Program powinien pobierać od użytkownika:
+• Kwotę do przeliczenia.
+• Walutę źródłową (np. USD, EUR, GBP).
+• Walutę docelową. 
+
+Następnie program powinien obliczyć i wyświetlić przeliczoną kwotę na podstawie zdefiniowanych
+kursów wymiany.
+Wymagane funkcje:
+• Instrukcje let: Przechowywanie kursów wymiany jako stałe.
+• Instrukcje warunkowe: Obsługa różnych kombinacji walut.
+• Operatory arytmetyczne: Obliczanie przeliczonej kwoty.
+• Niezmienne struktury danych: Użycie mapy (Map) do przechowywania kursów wymiany.
+
+*)
+
+open System
+
+let main () =
+    try
+        printf "Wprowadź kwotę w PLN: "
+        let kwotaPobrana = Console.ReadLine() |> float
+
+        
+        let kursy = Map.ofList [("USD", 0.24); ("EUR", 0.23); ("GBP", 0.20)]
+
+        printfn "Na jaką walutę chcesz wymienić?"
+        printfn "1 - USD"
+        printfn "2 - EUR"
+        printfn "3 - GBP"
+        printf "Wybór: "
+
+        let wybor = Console.ReadLine() |> int
+        let walutaDocelowa =
+            match wybor with
+            | 1 -> "USD"
+            | 2 -> "EUR"
+            | 3 -> "GBP"
+            | _ -> ""
+
+        if walutaDocelowa = "" then
+            printfn "Nieprawidłowy wybór waluty."
+        else
+            let kurs = kursy.[walutaDocelowa]
+            let kwotaPrzeliczona = kwotaPobrana * kurs
+            printfn "Wpłacono: %.2f PLN, przeliczone na %s: %.2f" kwotaPobrana walutaDocelowa kwotaPrzeliczona
+    with
+    | :? FormatException ->
+        printfn "Błąd: Wprowadź poprawną kwotę."
+
+main()
